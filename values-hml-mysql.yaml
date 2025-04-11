@@ -1,11 +1,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello-pod
+  name: mysql
   labels:
-    app: hello
+    app: mysql
 spec:
   containers:
-    - name: hello-container
-      image: busybox
-      command: ["sh", "-c", "echo Hello Kubernetes! && sleep 3600"]
+    - name: mysql
+      image: mysql:5.7
+      env:
+        - name: MYSQL_ROOT_PA
+          value: my-secret-pw
+      ports:
+        - containerPort: 3306
